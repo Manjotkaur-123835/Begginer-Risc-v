@@ -1,0 +1,375 @@
+# RISC-V — Beginner Notes
+
+## 1. What is a Processor?
+
+A **processor (CPU)** is the physical electronic component of a computer that executes instructions and performs operations.
+
+A CPU contains different parts that work together, such as:
+
+* **ALU (Arithmetic Logic Unit)** — performs arithmetic and logical operations.
+* **Registers** — very small and fast storage locations inside the CPU that temporarily hold data.
+* **Control Unit (CU)** — coordinates the operations of the CPU and controls what should happen.
+
+### Simple idea:
+
+**CPU = the physical machine that does the work.**
+
+---
+
+## 2. What is an ISA?
+
+**ISA = Instruction Set Architecture**
+
+An ISA is a **set of rules/specifications that defines the instructions a processor understands and how those instructions work.**
+
+For example, an ISA can define instructions for:
+
+* Addition
+* Subtraction
+* Loading data
+* Storing data
+* Jumping to another instruction
+
+An ISA is **not a physical component**.
+
+It is more like a **rulebook or language between software and the processor**.
+
+---
+
+## 3. What is RISC-V?
+
+**RISC-V is an ISA (Instruction Set Architecture).**
+
+It defines instructions and rules that a processor can be designed to implement.
+
+For example, RISC-V has instructions such as:
+
+```text
+ADD
+SUB
+LOAD
+STORE
+```
+
+RISC-V defines what these instructions mean and how they are represented.
+
+### Important:
+
+**RISC-V is NOT a processor.**
+
+It is also not a physical component inside a CPU.
+
+---
+
+## 4. Then what is a RISC-V Processor?
+
+A **RISC-V processor is a physical CPU whose hardware is designed to implement and understand the RISC-V ISA.**
+
+Engineers take the RISC-V specifications and design electronic circuits that behave according to those rules.
+
+So:
+
+```text
+RISC-V ISA
+    ↓
+Rules/specifications
+    ↓
+Engineers design hardware
+    ↓
+Physical RISC-V processor
+```
+
+We say that the processor **implements the RISC-V ISA**.
+
+---
+
+## 5. Where is RISC-V inside the CPU?
+
+RISC-V is **not physically sitting inside the CPU**.
+
+There is no small object called "RISC-V" inside the processor.
+
+Instead, the CPU's electronic circuits are designed so that they can execute RISC-V instructions.
+
+A useful beginner analogy is:
+
+**RISC-V = rulebook**
+
+**CPU = machine built to follow the rulebook**
+
+The rulebook itself isn't inside the machine, but the machine is designed according to it.
+
+---
+
+## 6. How does a RISC-V instruction work?
+
+Suppose we have:
+
+```asm
+add x5, x6, x7
+```
+
+This means approximately:
+
+> Add the values in registers x6 and x7 and put the result in x5.
+
+The simplified process is:
+
+```text
+RISC-V instruction
+       ↓
+CPU fetches instruction
+       ↓
+Control Unit decodes it
+       ↓
+Registers provide the required values
+       ↓
+ALU performs the addition
+       ↓
+Result is placed in a register
+```
+
+For example:
+
+```text
+x6 = 5
+x7 = 3
+
+       ↓
+
+ALU: 5 + 3
+
+       ↓
+
+x5 = 8
+```
+
+---
+
+## 7. What is the role of RISC-V in this process?
+
+RISC-V **does not perform the calculation**.
+
+The physical CPU performs the calculation.
+
+RISC-V defines:
+
+* What `ADD` means
+* What registers are available
+* How instructions are structured
+* How instructions are represented in machine code
+* What operations the processor must support
+
+The physical hardware then implements these rules.
+
+So:
+
+```text
+RISC-V
+   ↓
+Defines what the instruction means
+
+CPU
+   ↓
+Actually executes the instruction
+
+CU
+   ↓
+Coordinates the operation
+
+Registers
+   ↓
+Hold temporary values
+
+ALU
+   ↓
+Performs the calculation
+```
+
+---
+
+## 8. What happened before RISC-V?
+
+RISC-V did **not invent the concept of an ISA**.
+
+Processors had instruction sets long before RISC-V.
+
+Other processors use other ISAs, such as:
+
+* x86
+* ARM
+* MIPS
+* SPARC
+* PowerPC
+
+The basic idea is:
+
+```text
+ISA
+ ↓
+Defines instructions
+ ↓
+Processor is designed to implement the ISA
+ ↓
+CPU executes those instructions
+```
+
+RISC-V is simply **one ISA** among several.
+
+---
+
+## 9. Why do we need an ISA?
+
+A processor needs a defined way to understand instructions from software.
+
+Software cannot simply tell a CPU:
+
+> "Please add these two numbers."
+
+The CPU needs a specific machine-level instruction that it understands.
+
+The ISA provides the common rules between software and hardware.
+
+```text
+Software
+   ↓
+Compiler
+   ↓
+Machine instructions
+   ↓
+ISA rules
+   ↓
+CPU hardware
+   ↓
+Execution
+```
+
+---
+
+## 10. RISC-V is not "inside" the CPU
+
+Remember this distinction:
+
+### RISC-V
+
+**ISA / rulebook**
+
+↓
+
+### RISC-V Processor
+
+**Physical CPU designed according to those rules**
+
+↓
+
+### CPU Components
+
+**CU + ALU + Registers + other hardware**
+
+---
+
+## 11. Does every processor use RISC-V?
+
+No.
+
+Different processors can be designed around different ISAs.
+
+For example:
+
+```text
+RISC-V ISA → RISC-V processors
+
+ARM ISA → ARM-based processors
+
+x86 ISA → x86 processors
+```
+
+The processor's hardware is designed to implement its particular ISA.
+
+---
+
+## 12. Does the result always go to RAM?
+
+No.
+
+After an operation, the result can remain in a **register**.
+
+For example:
+
+```text
+5 + 3
+ ↓
+ALU
+ ↓
+8
+ ↓
+Register
+```
+
+If the program needs to store the result in memory, it can eventually be written to RAM.
+
+So:
+
+**Calculation ≠ automatically stored in RAM.**
+
+---
+
+## 13. Does the CPU directly show the result on the screen?
+
+Not directly.
+
+The CPU performs the computation. Other hardware and software are involved in displaying information on a screen.
+
+A simplified example is:
+
+```text
+Program
+   ↓
+RISC-V instructions
+   ↓
+RISC-V CPU
+   ↓
+CU + Registers + ALU
+   ↓
+Result
+   ↓
+Software / graphics hardware
+   ↓
+Screen
+```
+
+---
+
+# ⭐ Most Important Points to Remember
+
+### 1.
+
+**CPU/Processor = physical hardware that performs work.**
+
+### 2.
+
+**ISA = Instruction Set Architecture.**
+
+### 3.
+
+**RISC-V = an ISA, not a processor.**
+
+### 4.
+
+**RISC-V is not physically inside the CPU.**
+
+### 5.
+
+**A RISC-V processor is a physical CPU designed to implement the RISC-V ISA.**
+
+### 6.
+
+**CU coordinates operations, registers hold temporary data, and ALU performs arithmetic/logic operations.**
+
+### 7.
+
+**RISC-V defines what instructions mean; the physical CPU executes them.**
+
+### One-line summary:
+
+> **RISC-V is the rulebook for instructions, while a RISC-V processor is the physical machine designed to follow that rulebook.**
