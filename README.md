@@ -62,3 +62,6 @@ ABI - Application Binary Interface — register usage convention
 Register - Fast on-chip storage, built from flip-flops 
 Stack - Scratch memory for temporarily saving register values 
 Prologue / Epilogue - Setup and cleanup code around a function body 
+Status
+
+🚧 Actively learning — this repo will grow as I work through more exercises and start writing my own programs instead of just following examples.
